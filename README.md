@@ -29,8 +29,8 @@ to purchase, so this application can hopefully help solve this problem.
 - As a user, I want to add a piece of furniture to a room if there is enough square footage to do so
 - As a user, I want to be able to select an added piece of furniture and add details about it such as furniture type,
 brand, price, and color
-- As a user, I want to be able to remove a piece of furniture from a room. 
-- As a user, I want to be able to view the total cost of furniture within a room or the entire house. 
+- As a user, I want to be able to remove a piece of furniture from a room
+- As a user, I want to be able to view the total cost of furniture within a room or the entire house
   
 
 
