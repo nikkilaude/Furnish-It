@@ -35,7 +35,7 @@ public class HouseApp {
 
         while (keepGoing) {
             displayHouseMenu();
-            command = input.next();
+            command = input.nextLine();
             command = command.toLowerCase();
 
             if (command.equals("q")) {
@@ -84,8 +84,8 @@ public class HouseApp {
     // MODIFIES: this
     // EFFECTS: adds a house
     private void displayHouseCreationMenu() {
-        System.out.println("Create a name for your new house (no spaces)");
-        String houseName = input.next();
+        System.out.println("Create a name for your new house");
+        String houseName = input.nextLine();
         houses.add(new House(houseName));
         System.out.println("House successfully added");
     }
@@ -116,7 +116,7 @@ public class HouseApp {
 
         while (keepGoing) {
             displayRoomMenu();
-            command = input.next();
+            command = input.nextLine();
             command = command.toLowerCase();
 
             if (command.equals("b")) {
@@ -153,16 +153,17 @@ public class HouseApp {
         }
     }
 
-    // REQUIRES: string is not empty and contains no spaces
+    // REQUIRES: string is not empty
     // MODIFIES: this
     // EFFECTS: adds a room
     private void displayRoomCreationMenu() {
-        System.out.println("Create a name for your new room (no spaces)");
-        String roomName = input.next();
+        System.out.println("Create a name for your new room");
+        String roomName = input.nextLine();
         System.out.println("Enter the length of the room");
         int roomLength = input.nextInt();
         System.out.println("Enter the width of the room");
         int roomWidth = input.nextInt();
+        input.nextLine();
         house.addRoom(new Room(roomName, roomLength, roomWidth));
         System.out.println("Room successfully added");
     }
@@ -178,6 +179,7 @@ public class HouseApp {
                 count++;
             }
             int roomSelection = input.nextInt();
+            input.nextLine();
             room = house.getRoom(roomSelection - 1);
             runFurnitureApp();
         } else {
@@ -198,7 +200,7 @@ public class HouseApp {
 
         while (keepGoing) {
             displayFurnitureMenu();
-            command = input.next();
+            command = input.nextLine();
             command = command.toLowerCase();
 
             if (command.equals("b")) {
@@ -259,19 +261,21 @@ public class HouseApp {
     // MODIFIES: this
     // EFFECTS: adds a piece of furniture to room
     private void displayFurnitureCreationMenu() {
-        System.out.println("Please input the following information: (no spaces)");
+        System.out.println("Please input the following information:");
         System.out.println("Furniture type:");
-        String type = input.next();
+        String type = input.nextLine();
         System.out.println("Furniture brand:");
-        String brand = input.next();
+        String brand = input.nextLine();
         System.out.println("Furniture price:");
         int cost = input.nextInt();
+        input.nextLine();
         System.out.println("Furniture color:");
-        String color = input.next();
+        String color = input.nextLine();
         System.out.println("Furniture length:");
         int length = input.nextInt();
         System.out.println("Furniture width:");
         int width = input.nextInt();
+        input.nextLine();
         if (room.addFurniture(new Furniture(type, brand, cost, color, length, width))) {
             System.out.println("Furniture successfully added");
         } else {
@@ -286,6 +290,7 @@ public class HouseApp {
         if (room.getFurnitures().size() >= 1) {
             System.out.println("Please select a furniture to remove by inputting its number: ");
             int furnitureSelection = input.nextInt();
+            input.nextLine();
             room.removeFurniture(room.getFurnitures().get(furnitureSelection - 1));
         } else {
             System.out.println("There is currently no furniture to remove");
@@ -298,6 +303,7 @@ public class HouseApp {
         if (room.getFurnitures().size() >= 1) {
             System.out.println("Please select a furniture to view by inputting its number: ");
             int furnitureSelection = input.nextInt();
+            input.nextLine();
             Furniture f = room.getFurnitures().get(furnitureSelection - 1);
             System.out.println("Type: " + f.getType());
             System.out.println("Brand: " + f.getBrand());
