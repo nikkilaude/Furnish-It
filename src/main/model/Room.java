@@ -10,7 +10,7 @@ public class Room {
     private int roomWidth;
     private int roomEmptyArea;
 
-    // EFFECTS: creates a Room with a name, length, and width
+    // EFFECTS: creates a Room with empty furniture list, a name, length, and width
     public Room(String name, int length, int width) {
         this.furnitures = new ArrayList<>();
         this.roomName = name;
