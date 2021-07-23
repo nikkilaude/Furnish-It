@@ -24,10 +24,10 @@ I will be moving into an unfurnished apartment soon. I am finding it difficult t
 to purchase, so this application can hopefully help solve this problem.  
 
 ### User Stories   
-- As a user, I want to be able to add multiple houses to a collection
+- As a user, I want to be able to add multiple houses to a collection 
 - As a user, I want to be able to add multiple rooms to a house
 - As a user, I want to add a piece of furniture to a room if there is enough square footage to do so
-- As a user, I want to be able to input details about added furniture such as furniture type, brand, price, 
+- As a user, I want to be able to input and view details about added furniture such as furniture type, brand, price, 
   and color
 - As a user, I want to be able to remove a piece of furniture from a room
 - As a user, I want to be able to view the total cost of furniture within a room or the entire house

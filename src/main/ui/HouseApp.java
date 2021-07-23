@@ -224,6 +224,7 @@ public class HouseApp {
         System.out.println("Select from:");
         System.out.println("\ta -> Add new furniture");
         System.out.println("\tr -> Remove existing furniture");
+        System.out.println("\tv -> View furniture details");
         System.out.println("\tc -> Calculate total room cost");
         System.out.println("\tb -> Go back to rooms menu");
     }
@@ -245,6 +246,8 @@ public class HouseApp {
             displayFurnitureCreationMenu();
         } else if (command.equals("r")) {
             displayFurnitureRemovalMenu();
+        } else if (command.equals("v")) {
+            displayFurnitureDetails();
         } else if (command.equals("c")) {
             displayRoomCalculation();
         } else {
@@ -284,6 +287,24 @@ public class HouseApp {
             System.out.println("Please select a furniture to remove by inputting its number: ");
             int furnitureSelection = input.nextInt();
             room.removeFurniture(room.getFurnitures().get(furnitureSelection - 1));
+        } else {
+            System.out.println("There is currently no furniture to remove");
+        }
+    }
+
+    // REQUIRES: number is from listed numbers
+    // EFFECTS: displays furniture details
+    private void displayFurnitureDetails() {
+        if (room.getFurnitures().size() >= 1) {
+            System.out.println("Please select a furniture to view by inputting its number: ");
+            int furnitureSelection = input.nextInt();
+            Furniture f = room.getFurnitures().get(furnitureSelection - 1);
+            System.out.println("Type: " + f.getType());
+            System.out.println("Brand: " + f.getBrand());
+            System.out.println("Price: " + f.getCost());
+            System.out.println("Color: " + f.getColor());
+            System.out.println("Length: " + f.getFurnitureLength());
+            System.out.println("Width: " + f.getFurnitureWidth());
         } else {
             System.out.println("There is currently no furniture to remove");
         }
