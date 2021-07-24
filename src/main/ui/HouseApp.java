@@ -101,6 +101,7 @@ public class HouseApp {
                 count++;
             }
             int houseSelection = input.nextInt();
+            input.nextLine();
             house = houses.get(houseSelection - 1);
             runRoomApp();
         } else {
@@ -161,6 +162,7 @@ public class HouseApp {
         String roomName = input.nextLine();
         System.out.println("Enter the length of the room");
         int roomLength = input.nextInt();
+        input.nextLine();
         System.out.println("Enter the width of the room");
         int roomWidth = input.nextInt();
         input.nextLine();
@@ -273,6 +275,7 @@ public class HouseApp {
         String color = input.nextLine();
         System.out.println("Furniture length:");
         int length = input.nextInt();
+        input.nextLine();
         System.out.println("Furniture width:");
         int width = input.nextInt();
         input.nextLine();
