@@ -2,7 +2,7 @@ package model;
 
 import java.util.ArrayList;
 
-// Represents a piece of furniture having a type, brand, price, and color.
+// Represents a piece of Furniture having a type, brand, price, and color.
 public class Furniture {
     private String type;
     private String brand;

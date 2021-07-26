@@ -301,7 +301,7 @@ public class HouseApp {
     }
 
     // REQUIRES: number is from listed numbers
-    // EFFECTS: displays furniture details
+    // EFFECTS: displays furniture details of selected piece
     private void displayFurnitureDetails() {
         if (room.getFurnitures().size() >= 1) {
             System.out.println("Please select a furniture to view by inputting its number: ");

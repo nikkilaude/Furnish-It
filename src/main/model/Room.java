@@ -2,7 +2,7 @@ package model;
 
 import java.util.ArrayList;
 
-// Represents a room having a list of Furniture
+// Represents a Room having a list of Furniture placed inside it
 public class Room {
     private ArrayList<Furniture> furnitures;
     private String roomName;
@@ -73,14 +73,16 @@ public class Room {
         return false;
     }
 
-    // EFFECTS: removed Furniture from Room
+    // REQUIRES: furniture to be removed should have been added previously
+    // MODIFIES: this
+    // EFFECTS: removes Furniture from Room
     public void removeFurniture(Furniture f) {
         if (this.furnitures.contains(f)) {
             this.furnitures.remove(f);
         }
     }
 
-    // EFFECTS: returns total cost of Furniture in Room
+    // EFFECTS: returns total cost of Furniture in Room, returns 0 if no furniture has been added so far
     public int getRoomCost() {
         int roomCost = 0;
         for (Furniture f : furnitures) {
