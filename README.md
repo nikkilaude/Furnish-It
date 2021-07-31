@@ -31,6 +31,8 @@ to purchase, so this application can hopefully help solve this problem.
   and color
 - As a user, I want to be able to remove a piece of furniture from a room
 - As a user, I want to be able to view the total cost of furniture within a room or the entire house
+- As a user, I want to be able to save my houses, rooms, and furniture to file 
+- As a user, when I start the FurnishIt application, I want to be given the option to load my list of houses from file.
   
 
 
