@@ -76,8 +76,8 @@ public class JsonReader {
         ArrayList<Furniture> furnitures = new ArrayList<>();
         JSONArray jsonArray = jsonObject.getJSONArray("furnitures");
         for (Object json : jsonArray) {
-            JSONObject furnitureJSON = (JSONObject) json;
-            Furniture furniture = addFurniture(furnitureJSON);
+            JSONObject furnitureJson = (JSONObject) json;
+            Furniture furniture = addFurniture(furnitureJson);
             furnitures.add(furniture);
         }
         return furnitures;
