@@ -1,9 +1,13 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 
 // Represents a House having a list of Rooms inside it
-public class House {
+public class House implements Writable {
     private ArrayList<Room> rooms;
     private String houseName;
 
@@ -55,5 +59,23 @@ public class House {
             houseCost += r.getRoomCost();
         }
         return houseCost;
+    }
+
+    // EFFECTS: returns JSON object of fields
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("house name", houseName);
+        json.put("rooms", roomsToJson());
+        return json;
+    }
+
+    // EFFECTS: returns rooms in this board as a JSON array
+    private JSONArray roomsToJson() {
+        JSONArray jsonArray = new JSONArray();
+        for (Room r : rooms) {
+            jsonArray.put(r.toJson());
+        }
+        return jsonArray;
     }
 }

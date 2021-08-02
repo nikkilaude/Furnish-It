@@ -3,9 +3,13 @@ package ui;
 import model.Furniture;
 import model.House;
 import model.Room;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
-import java.sql.SQLOutput;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 // UI Functionality and methods are implemented from Teller App. Link below:
@@ -13,14 +17,19 @@ import java.util.Scanner;
 
 // Furniture manger application
 public class HouseApp {
-    private ArrayList<House> houses;
+    private static final String JSON_STORE = "./data/house.json";
     private Scanner input;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
     private House house;
     private Room room;
-    private Furniture furn;
+
 
     // EFFECTS: runs the furniture manager application
-    public HouseApp() {
+    public HouseApp() throws FileNotFoundException {
+        input = new Scanner(System.in);
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
         runHouseApp();
     }
 
@@ -31,7 +40,9 @@ public class HouseApp {
         boolean keepGoing = true;
         String command = null;
 
-        init();
+        input = new Scanner(System.in);
+        house = null;
+        room = null;
 
         while (keepGoing) {
             displayHouseMenu();
@@ -48,22 +59,13 @@ public class HouseApp {
         System.out.println("Goodbye!");
     }
 
-    // MODIFIES: this
-    // EFFECTS: initializes scanner, list of houses, house, room, furniture
-    private void init() {
-        input = new Scanner(System.in);
-        houses = new ArrayList<>();
-        house = null;
-        room = null;
-        furn = null;
-    }
 
     // EFFECTS: displays menu of house options to user
     private void displayHouseMenu() {
         System.out.println("\nWelcome to FurnishIt!");
         System.out.println("Select from:");
         System.out.println("\tn -> Create a new house");
-        System.out.println("\te -> Choose an existing house");
+        System.out.println("\tl -> Load house file");
         System.out.println("\tq -> Quit application");
     }
 
@@ -73,8 +75,8 @@ public class HouseApp {
     private void processHouseMenuCommand(String command) {
         if (command.equals("n")) {
             displayHouseCreationMenu();
-        } else if (command.equals("e")) {
-            displayExistingHousesMenu();
+        } else if (command.equals("l")) {
+            loadHouse();
         } else {
             System.out.println("Selection invalid, please try again");
         }
@@ -86,28 +88,11 @@ public class HouseApp {
     private void displayHouseCreationMenu() {
         System.out.println("Create a name for your new house");
         String houseName = input.nextLine();
-        houses.add(new House(houseName));
-        System.out.println("House successfully added");
+        house = new House(houseName);
+        System.out.println("House successfully created");
+        runRoomApp();
     }
 
-    // REQUIRES: number is from the listed numbers
-    // EFFECTS: selects a house
-    private void displayExistingHousesMenu() {
-        if (houses.size() >= 1) {
-            int count = 1;
-            System.out.println("Please select a house by inputting its number: ");
-            for (House h : houses) {
-                System.out.println("\t" + count + ") " + h.getHouseName());
-                count++;
-            }
-            int houseSelection = input.nextInt();
-            input.nextLine();
-            house = houses.get(houseSelection - 1);
-            runRoomApp();
-        } else {
-            System.out.println("You have no existing houses");
-        }
-    }
 
     // MODIFIES: this
     // EFFECTS: processes user input for rooms menu
@@ -131,11 +116,11 @@ public class HouseApp {
 
     // EFFECTS: displays menu of room options to user
     private void displayRoomMenu() {
-        System.out.println("\nHouse selected: " + house.getHouseName());
         System.out.println("Select from:");
         System.out.println("\tn -> Create a new room");
         System.out.println("\te -> Choose an existing room");
         System.out.println("\tc -> Calculate total house cost");
+        System.out.println("\ts -> Save house");
         System.out.println("\tb -> Go back to houses menu");
     }
 
@@ -149,6 +134,8 @@ public class HouseApp {
             displayExistingRoomsMenu();
         } else if (command.equals("c")) {
             displayHouseCalculation();
+        } else if (command.equals("s")) {
+            saveHouse();
         } else {
             System.out.println("Selection invalid, please try again");
         }
@@ -173,10 +160,12 @@ public class HouseApp {
     // REQUIRES: number is from the listed numbers
     // EFFECTS: selects a room
     private void displayExistingRoomsMenu() {
-        if (house.getRooms().size() >= 1) {
+        if (house.getRooms().size() == 0) {
+            System.out.println("You have no existing rooms in this house");
+        } else {
+            ArrayList<Room> rooms = house.getRooms();
             int count = 1;
-            System.out.println("Please select a room by inputting its number: ");
-            for (Room r : house.getRooms()) {
+            for (Room r : rooms) {
                 System.out.println("\t" + count + ") " + r.getRoomName());
                 count++;
             }
@@ -184,8 +173,6 @@ public class HouseApp {
             input.nextLine();
             room = house.getRoom(roomSelection - 1);
             runFurnitureApp();
-        } else {
-            System.out.println("You have no existing rooms in this house");
         }
     }
 
@@ -230,6 +217,7 @@ public class HouseApp {
         System.out.println("\tr -> Remove existing furniture");
         System.out.println("\tv -> View furniture details");
         System.out.println("\tc -> Calculate total room cost");
+        System.out.println("\ts -> Save house");
         System.out.println("\tb -> Go back to rooms menu");
     }
 
@@ -254,6 +242,8 @@ public class HouseApp {
             displayFurnitureDetails();
         } else if (command.equals("c")) {
             displayRoomCalculation();
+        } else if (command.equals("s")) {
+            saveHouse();
         } else {
             System.out.println("Selection invalid, please try again");
         }
@@ -322,6 +312,30 @@ public class HouseApp {
     // EFFECTS: calculates total room cost
     private void displayRoomCalculation() {
         System.out.println(room.getRoomName() + " total room cost = " + room.getRoomCost());
+    }
+
+    // EFFECTS: saves the house to file
+    private void saveHouse() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(house);
+            jsonWriter.close();
+            System.out.println("Saved " + house.getHouseName() + " to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads house from file
+    private void loadHouse() {
+        try {
+            house = jsonReader.read();
+            System.out.println("Loaded " + house.getHouseName() + " from " + JSON_STORE);
+            runRoomApp();
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        }
     }
 
 }

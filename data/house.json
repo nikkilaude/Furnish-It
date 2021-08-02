@@ -1,0 +1,17 @@
+{
+    "rooms": [{
+        "furnitures": [{
+            "furniture color": "white",
+            "furniture cost": 1000,
+            "furniture brand": "Ikea",
+            "furniture type": "Couch",
+            "furniture length": 5,
+            "furniture width": 5
+        }],
+        "room width": 5,
+        "room empty area": 35,
+        "room name": "Living Room",
+        "room length": 12
+    }],
+    "house name": "Nikki's House"
+}

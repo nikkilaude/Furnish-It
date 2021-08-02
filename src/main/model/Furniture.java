@@ -1,9 +1,12 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 
 // Represents a piece of Furniture having a type, brand, price, and color.
-public class Furniture {
+public class Furniture implements Writable {
     private String type;
     private String brand;
     private int cost;
@@ -85,6 +88,19 @@ public class Furniture {
     // EFFECTS: returns furniture width
     public int getFurnitureWidth() {
         return this.furnitureWidth;
+    }
+
+    // EFFECTS: returns JSON object of furniture
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("furniture type", type);
+        json.put("furniture brand", brand);
+        json.put("furniture cost", cost);
+        json.put("furniture color", color);
+        json.put("furniture length", furnitureLength);
+        json.put("furniture width", furnitureWidth);
+        return json;
     }
 
 }

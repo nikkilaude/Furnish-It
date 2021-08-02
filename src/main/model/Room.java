@@ -1,9 +1,14 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
+import java.util.List;
 
 // Represents a Room having a list of Furniture placed inside it
-public class Room {
+public class Room implements Writable {
     private ArrayList<Furniture> furnitures;
     private String roomName;
     private int roomLength;
@@ -17,6 +22,15 @@ public class Room {
         this.roomLength = length;
         this.roomWidth = width;
         this.roomEmptyArea = length * width;
+    }
+
+    // EFFECTS: creates a Room with furnitures, name, length, width, empty area
+    public Room(String name, int length, int width, ArrayList<Furniture> furnitures, int emptyArea) {
+        this.roomName = name;
+        this.roomLength = length;
+        this.roomWidth = width;
+        this.furnitures = furnitures;
+        this.roomEmptyArea = emptyArea;
     }
 
     // EFFECTS: returns Room name
@@ -89,5 +103,26 @@ public class Room {
             roomCost += f.getCost();
         }
         return roomCost;
+    }
+
+    // EFFECTS: returns JSON object of fields of Room
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("furnitures", furnituresToJson());
+        json.put("room name", roomName);
+        json.put("room length", roomLength);
+        json.put("room width", roomWidth);
+        json.put("room empty area", roomEmptyArea);
+        return json;
+    }
+
+    // EFFECTS: returns JSON array of furnitures
+    private JSONArray furnituresToJson() {
+        JSONArray jsonArray = new JSONArray();
+        for (Furniture f : furnitures) {
+            jsonArray.put(f.toJson());
+        }
+        return jsonArray;
     }
 }

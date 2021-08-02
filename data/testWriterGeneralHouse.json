@@ -1,0 +1,36 @@
+{
+    "rooms": [
+        {
+            "furnitures": [],
+            "room width": 3,
+            "room empty area": 6,
+            "room name": "Bathroom",
+            "room length": 2
+        },
+        {
+            "furnitures": [
+                {
+                    "furniture color": "Blue",
+                    "furniture cost": 200,
+                    "furniture brand": "IKEA",
+                    "furniture type": "Chair",
+                    "furniture length": 1,
+                    "furniture width": 1
+                },
+                {
+                    "furniture color": "White",
+                    "furniture cost": 300,
+                    "furniture brand": "IKEA",
+                    "furniture type": "Table",
+                    "furniture length": 3,
+                    "furniture width": 2
+                }
+            ],
+            "room width": 6,
+            "room empty area": 23,
+            "room name": "Living Room",
+            "room length": 5
+        }
+    ],
+    "house name": "Test House"
+}
