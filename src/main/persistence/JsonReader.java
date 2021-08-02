@@ -15,6 +15,8 @@ import java.util.stream.Stream;
 
 // Data persistence was implemented from JsonSerializationDemo. Link below:
 // https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
+
+// Represents a reader that reads workroom from JSON data stored in file
 public class JsonReader {
     private String source;
 

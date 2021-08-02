@@ -9,6 +9,8 @@ import java.io.PrintWriter;
 
 // Data persistence was implemented from JsonSerializationDemo. Link below:
 // https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
+
+// Represents a writer that writes JSON representation of workroom to file
 public class JsonWriter {
     private static final int TAB = 4;
     private PrintWriter writer;
