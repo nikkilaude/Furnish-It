@@ -93,6 +93,7 @@ public class Room implements Writable {
     public void removeFurniture(Furniture f) {
         if (this.furnitures.contains(f)) {
             this.furnitures.remove(f);
+            roomEmptyArea += (f.getFurnitureLength() * f.getFurnitureWidth());
         }
     }
 

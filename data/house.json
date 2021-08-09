@@ -1,17 +1,43 @@
 {
-    "rooms": [{
-        "furnitures": [{
-            "furniture color": "white",
-            "furniture cost": 1000,
-            "furniture brand": "Ikea",
-            "furniture type": "Couch",
-            "furniture length": 5,
-            "furniture width": 5
-        }],
-        "room width": 5,
-        "room empty area": 35,
-        "room name": "Living Room",
-        "room length": 12
-    }],
+    "rooms": [
+        {
+            "furnitures": [
+                {
+                    "furniture color": "White",
+                    "furniture cost": 1500,
+                    "furniture brand": "Ikea",
+                    "furniture type": "Couch",
+                    "furniture length": 12,
+                    "furniture width": 4
+                },
+                {
+                    "furniture color": "Brown",
+                    "furniture cost": 200,
+                    "furniture brand": "Ikea",
+                    "furniture type": "Table",
+                    "furniture length": 5,
+                    "furniture width": 2
+                }
+            ],
+            "room width": 12,
+            "room empty area": 2,
+            "room name": "Living Room",
+            "room length": 5
+        },
+        {
+            "furnitures": [{
+                "furniture color": "Red",
+                "furniture cost": 300,
+                "furniture brand": "Ikea",
+                "furniture type": "Bed",
+                "furniture length": 10,
+                "furniture width": 5
+            }],
+            "room width": 12,
+            "room empty area": 10,
+            "room name": "Dining Room",
+            "room length": 5
+        }
+    ],
     "house name": "Nikki's House"
 }
