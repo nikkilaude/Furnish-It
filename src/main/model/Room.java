@@ -1,5 +1,6 @@
 package model;
 
+import exceptions.FurnitureNotThere;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import persistence.Writable;
@@ -90,11 +91,12 @@ public class Room implements Writable {
     // REQUIRES: furniture to be removed should have been added previously
     // MODIFIES: this
     // EFFECTS: removes Furniture from Room
-    public void removeFurniture(Furniture f) {
-        if (this.furnitures.contains(f)) {
-            this.furnitures.remove(f);
-            roomEmptyArea += (f.getFurnitureLength() * f.getFurnitureWidth());
+    public void removeFurniture(Furniture f) throws FurnitureNotThere {
+        if (!furnitures.contains(f)) {
+            throw new FurnitureNotThere();
         }
+        this.furnitures.remove(f);
+        roomEmptyArea += (f.getFurnitureLength() * f.getFurnitureWidth());
     }
 
     // EFFECTS: returns total cost of Furniture in Room, returns 0 if no furniture has been added so far

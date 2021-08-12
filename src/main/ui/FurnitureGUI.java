@@ -1,5 +1,6 @@
 package ui;
 
+import exceptions.FurnitureNotThere;
 import model.Furniture;
 import model.House;
 import model.Room;
@@ -186,7 +187,11 @@ public class FurnitureGUI extends JFrame implements ActionListener {
     // EFFECTS: removes chosen furniture
     private void removeFurnitureSetUp() {
         Furniture chosenFurnitureToRemove = getChosenFurnitureToRemove(bg1);
-        room.removeFurniture(chosenFurnitureToRemove);
+        try {
+            room.removeFurniture(chosenFurnitureToRemove);
+        } catch (FurnitureNotThere e) {
+            System.err.println("The chosen furniture to remove was not previously added.");
+        }
         allFurnitureToRemove.setVisible(false);
     }
 
