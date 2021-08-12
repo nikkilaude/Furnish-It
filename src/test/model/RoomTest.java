@@ -1,5 +1,6 @@
 package model;
 
+import exceptions.FurnitureNotThere;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -65,17 +66,31 @@ public class RoomTest {
     }
 
     @Test
-    public void testRemoveFurniture() {
+    public void testRemoveFurnitureNoException() {
         Furniture couch = new Furniture("Couch", "Ikea", 3000, "Brown", 10, 10);
         livRoom.addFurniture(couch);
         Furniture table = new Furniture("Table", "Ikea", 2000, "White", 90, 50);
         livRoom.addFurniture(table);
-        livRoom.removeFurniture(couch);
+
+        try {
+            livRoom.removeFurniture(couch);
+        } catch (FurnitureNotThere e) {
+            fail("Unexpected exception");
+        }
+
         assertEquals(livRoom.getFurnitures().size(),1);
         assertFalse(livRoom.getFurnitures().contains(couch));
-        Furniture chair = new Furniture("Chair", "Ikea", 1000, "Black", 1, 1);
-        livRoom.removeFurniture(chair);
-        assertEquals(livRoom.getFurnitures().size(),1);
+    }
+
+    @Test
+    public void testRemoveFurnitureExceptionExpected() {
+        Furniture couch = new Furniture("Couch", "Ikea", 3000, "Brown", 10, 10);
+        try {
+            livRoom.removeFurniture(couch);
+            fail("Exception not thrown");
+        } catch (FurnitureNotThere e) {
+            // all good!
+        }
     }
 
     @Test

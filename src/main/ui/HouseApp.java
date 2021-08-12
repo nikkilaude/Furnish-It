@@ -1,5 +1,6 @@
 package ui;
 
+import exceptions.FurnitureNotThere;
 import model.Furniture;
 import model.House;
 import model.Room;
@@ -284,7 +285,11 @@ public class HouseApp {
             System.out.println("Please select a furniture to remove by inputting its number: ");
             int furnitureSelection = input.nextInt();
             input.nextLine();
-            room.removeFurniture(room.getFurnitures().get(furnitureSelection - 1));
+            try {
+                room.removeFurniture(room.getFurnitures().get(furnitureSelection - 1));
+            } catch (FurnitureNotThere e) {
+                System.err.println("The chosen furniture to remove was not previously added.");
+            }
         } else {
             System.out.println("There is currently no furniture to remove");
         }

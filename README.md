@@ -33,6 +33,10 @@ to purchase, so this application can hopefully help solve this problem.
 - As a user, I want to be able to view the total cost of furniture within a room or the entire house
 - As a user, I want to be able to save a house along with the rooms and furniture inside it
 - As a user, when I start the FurnishIt application, I want to be given the option to load a saved house from file.
+
+### Phase 4 Task 2
+I chose to implement the first option by testing and designing a class in my model package that is robust. The method
+that has a robust design is removeFurniture() which is located in the model.Room package. 
   
   
 
