@@ -143,7 +143,7 @@ public class FurnitureGUI extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if ("add furniture".equals(e.getActionCommand())) {
-            new FurnitureCreationMenu(house, room, this);
+            new FurnitureCreationMenu(room, this);
         } else if ("remove furniture".equals(e.getActionCommand())) {
             removeFurnitureButtonPress();
         } else if ("view details".equals(e.getActionCommand())) {

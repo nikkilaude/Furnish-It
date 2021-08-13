@@ -1,7 +1,6 @@
 package ui;
 
 import model.Furniture;
-import model.House;
 import model.Room;
 
 import javax.swing.*;
@@ -22,19 +21,17 @@ public class FurnitureCreationMenu extends JFrame implements ActionListener {
     private JTextField furnitureLengthText;
     private JTextField furnitureWidthText;
 
-    private House house;
     private Room room;
     private JFrame parentFrame;
     private JPanel panel;
 
     // EFFECTS: constructs a furniture creation menu
-    public FurnitureCreationMenu(House house, Room room, JFrame frame) {
+    public FurnitureCreationMenu(Room room, JFrame frame) {
         this.setSize(350,250);
         panel = new JPanel();
         this.add(panel);
         panel.setLayout(null);
         this.room = room;
-        this.house = house;
         this.parentFrame = frame;
         createFurnitureTypeField();
         createFurnitureBrandField();

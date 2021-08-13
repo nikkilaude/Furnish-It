@@ -19,15 +19,12 @@ import java.io.IOException;
 public class HouseGUI extends JFrame implements ActionListener {
 
     private static final String JSON_STORE = "./data/house.json";
-    private JsonWriter jsonWriter;
     private JsonReader jsonReader;
     private House house;
-    private Room room;
     private JFrame frame;
 
     // EFFECTS: constructs a house menu
     public HouseGUI() {
-        jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
         runHouseApp();
     }

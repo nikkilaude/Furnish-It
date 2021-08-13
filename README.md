@@ -36,10 +36,18 @@ to purchase, so this application can hopefully help solve this problem.
 
 ### Phase 4 Task 2
 I chose to implement the first option by testing and designing a class in my model package that is robust. The method
-that has a robust design is removeFurniture() which is located in the model.Room package. 
+that has a robust design is removeFurniture() which is located in the model.Room package. This method checks whether
+the furniture the user wants to remove has been added to the room previously. If not, a FurnitureNotThere exception is
+thrown.
+
+### Phase 4 Task 3
+If I had more time, I would refactor the code by:
+
+- Reducing code duplication in the display and creation menus. This is because House, Room, and Furniture GUI as well 
+  as Creation Menus all have then same layout, just with different content
   
-  
+- Increasing cohesion by breaking down longer methods into helper methods. This will make it easier to understand what 
+  each method is responsible for. For example, the createContentPanel() in the HouseGUI UI class could be separated 
+  into methods for creating the window and the buttons. 
 
-
-
-
+- Reducing coupling between the UI components and House class. 
